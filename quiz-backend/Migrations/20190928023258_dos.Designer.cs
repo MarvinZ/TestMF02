@@ -10,9 +10,9 @@ using System;
 
 namespace quiz_backend.Migrations
 {
-    [DbContext(typeof(QuizContext))]
-    [Migration("20190928012927_MyFirstMigration")]
-    partial class MyFirstMigration
+    [DbContext(typeof(MaintenanceManContext))]
+    [Migration("20190928023258_dos")]
+    partial class dos
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,40 +21,18 @@ namespace quiz_backend.Migrations
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("quiz_backend.Models.Question", b =>
+            modelBuilder.Entity("MaintenanceBot.WorkOrder", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Answer1");
+                    b.Property<string>("AdditionalInformation");
 
-                    b.Property<string>("Answer2");
-
-                    b.Property<string>("Answer3");
-
-                    b.Property<string>("CorrectAnswer");
-
-                    b.Property<int>("QuizId");
-
-                    b.Property<string>("Text");
+                    b.Property<string>("Description");
 
                     b.HasKey("ID");
 
-                    b.ToTable("Questions");
-                });
-
-            modelBuilder.Entity("quiz_backend.Models.Quiz", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("OwnerId");
-
-                    b.Property<string>("Title");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Quiz");
+                    b.ToTable("WorkOrders");
                 });
 #pragma warning restore 612, 618
         }

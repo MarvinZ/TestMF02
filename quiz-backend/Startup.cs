@@ -39,6 +39,7 @@ namespace quiz_backend
             var conn = "Data Source=.;Initial Catalog=TestMF202;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             services.AddDbContext<QuizContext>(opt => opt.UseSqlServer(conn));
             services.AddDbContext<UserDbContext>(opt => opt.UseSqlServer(conn));
+            services.AddDbContext<MaintenanceManContext>(opt => opt.UseSqlServer(conn));
 
             services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<UserDbContext>();
 
