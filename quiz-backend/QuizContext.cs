@@ -15,5 +15,9 @@ namespace quiz_backend
 
         public DbSet<quiz_backend.Models.Quiz> Quiz { get; set; }
 
+        public DbSet<quiz_backend.Models.Feed> Feed { get; set; }
+
+        public DbSet<quiz_backend.Models.UserFeed> UserFeed { get; set; }
+
     }
 }

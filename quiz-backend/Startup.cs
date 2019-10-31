@@ -84,6 +84,9 @@ namespace quiz_backend
 
             //seeder.SeedAdminUser();
             //seeder.SeedQuizes();
+            seeder.SeedFeeds();
+
+
 
 
         }

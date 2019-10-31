@@ -5,6 +5,7 @@
         public int ID { get; set; }
         public string Title { get; set; }
         public string TestFieldXXXXXX { get; set; }
+        public string okTestColumn { get; set; }
         public string OwnerId { get; set; }
     }
 }

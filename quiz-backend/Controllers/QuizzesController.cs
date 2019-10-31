@@ -38,6 +38,46 @@ namespace quiz_backend.Controllers
             return _context.Quiz;
         }
 
+        [HttpGet("GetAllFeeds")]
+        public IEnumerable<Feed> GetAllFeeds()
+        {
+            return _context.Feed;
+        }
+
+        [HttpPost("GetMyFeeds")]
+        public IEnumerable<Feed> GetMyFeeds([FromBody] SimpleUser simpleUSer)
+        {
+            var myFeeds = _context.UserFeed.Where(e => e.UserId == simpleUSer.UserId).ToList();
+            var allFeeds = _context.Feed.ToList();
+            foreach (var feed in allFeeds)
+            {
+                if(myFeeds.Any(e=>e.FeedId == feed.Id))
+                {
+                    feed.isSubscribed = true;
+                }
+            }
+            return allFeeds;
+        }
+
+
+        [HttpPost("SubscribeUnsubscribe")]
+        public bool SubscribeUnsubscribe([FromBody] UserFeed uf)
+        {
+            var relationship = _context.UserFeed.SingleOrDefault(m => m.UserId == uf.UserId && m.FeedId == uf.FeedId);
+            if (relationship == null)
+            {
+                _context.UserFeed.Add(new UserFeed { FeedId = uf.FeedId, UserId = uf.UserId });
+            }
+            else
+            {
+                _context.UserFeed.Remove(relationship);
+
+            }
+            _context.SaveChanges();
+            return true;
+        }
+
+
         // GET: api/Quizzes/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetQuiz([FromRoute] int id)
